@@ -7,10 +7,13 @@ const headers = {
   "Access-Control-Allow-Headers": "Content-Type",
 }
 
+const apiKey = process.env.MAILGUN_API_KEY
+const domain = process.env.MAILGUN_DOMAIN
+console.log(apiKey)
 const mailgun = require("mailgun-js")
 const mg = mailgun({
-  apiKey: process.env.MAILGUN_API_KEY,
-  domain: process.env.MAILGUN_DOMAIN,
+  apiKey,
+  domain,
 })
 
 const successCode = 200
@@ -18,7 +21,7 @@ const errorCode = 400
 
 export function handler(event, context, callback) {
   let data = JSON.parse(event.body)
-  console.log(data)
+
   let { name, email, message } = data
 
   let mailOptions = {
