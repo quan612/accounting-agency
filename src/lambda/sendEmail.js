@@ -40,7 +40,7 @@ export function handler(event, context, callback) {
     if (error) {
       // return console.log(error)
       callback(null, {
-        errorCode,
+        statusCode: 412,
         headers,
         body: JSON.stringify(error),
       })
@@ -49,9 +49,9 @@ export function handler(event, context, callback) {
     // else {
     callback(null, {
       statusCode: 200,
-      // body: "Mail sent",
+      body: { message: "test" },
       headers,
-      body: JSON.stringify(body),
+      // body: JSON.stringify(body),
     })
     // }
   })
