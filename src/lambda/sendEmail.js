@@ -23,7 +23,7 @@ const mg = mailgun({
 const successCode = 200
 const errorCode = 412
 
-export function handler(event, context, callback) {
+exports.handler = (event, context, callback) {
   let data = JSON.parse(event.body)
 
   let { name, email, message } = data
@@ -35,26 +35,38 @@ export function handler(event, context, callback) {
     text: `${message}`,
   }
 
-  // Our Mailgun code
-  mg.messages().send(mailOptions, (error, body) => {
-    console.log(body)
-    if (error) {
-      // return console.log(error)
-      callback(null, {
-        statusCode: 412,
-        headers,
-        // body: { message: "test" + JSON.stringify(error) },
-        body: JSON.stringify(error),
-      })
-    }
-
-    // else {
-    callback(null, {
+  mg.messages().send(mailOptions).then(success =>{
+    return {
       statusCode: 200,
-      // body: { message: "test" },
-      headers,
-      body: JSON.stringify(body),
-    })
-    // }
+      body: "Message sent",
+    }
+  }).catch(error =>{
+    return {
+      statusCode: 412,
+      body: error,
+    }
   })
+
+  // Our Mailgun code
+  // mg.messages().send(mailOptions, (error, body) => {
+  //   console.log(body)
+  //   if (error) {
+  //     // return console.log(error)
+  //     callback(null, {
+  //       statusCode: 412,
+  //       headers,
+  //       // body: { message: "test" + JSON.stringify(error) },
+  //       body: JSON.stringify(error),
+  //     })
+  //   }
+
+  //   // else {
+  //   callback(null, {
+  //     statusCode: 200,
+  //     // body: { message: "test" },
+  //     headers,
+  //     body: JSON.stringify(body),
+  //   })
+  //   // }
+  // })
 }
