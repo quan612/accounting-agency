@@ -42,16 +42,17 @@ export function handler(event, context, callback) {
       callback(null, {
         statusCode: 412,
         headers,
-        body: { message: "test" + JSON.stringify(error) },
+        // body: { message: "test" + JSON.stringify(error) },
+        body: JSON.stringify(error),
       })
     }
 
     // else {
     callback(null, {
       statusCode: 200,
-      body: { message: "test" },
+      // body: { message: "test" },
       headers,
-      // body: JSON.stringify(body),
+      body: JSON.stringify(body),
     })
     // }
   })
