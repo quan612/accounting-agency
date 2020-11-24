@@ -18,6 +18,7 @@ exports.handler = async (event, context, callback) => {
     from: "neverlate612@gmail.com",
     subject: "Contact Form Submission",
     html: body,
+    text: `From ${email}`,
   }
 
   try {

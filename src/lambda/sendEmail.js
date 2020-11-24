@@ -10,11 +10,6 @@ const headers = {
   "Access-Control-Allow-Headers": "Content-Type",
 }
 
-// const apiKey = process.env.MAILGUN_API_KEY
-// const domain = process.env.MAILGUN_DOMAIN
-
-// console.log(apiKey)
-
 const mg = mailgun({
   apiKey: process.env.GATSBY_MAILGUN_API_KEY,
   domain: process.env.GATSBY_MAILGUN_DOMAIN,
