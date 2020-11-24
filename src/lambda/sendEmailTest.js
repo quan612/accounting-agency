@@ -1,7 +1,7 @@
 const sgMail = require("@sendgrid/mail")
-const { SENDGRID_API_KEY, SENDGRID_TO_EMAIL } = process.env
+const { GATSBY_SENDGRID_API_KEY, SENDGRID_TO_EMAIL } = process.env
 
-sgMail.setApiKey(SENDGRID_API_KEY)
+sgMail.setApiKey(GATSBY_SENDGRID_API_KEY)
 
 exports.handler = async (event, context, callback) => {
   const payload = JSON.parse(event.body)
