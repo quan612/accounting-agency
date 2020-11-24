@@ -14,8 +14,8 @@ exports.handler = async (event, context, callback) => {
     .join("<br><br>")
 
   const msg = {
-    to: "quan612@yahoo.com",
-    from: email,
+    to: "neverlate612@gmail.com",
+    from: "neverlate612@gmail.com",
     subject: "Contact Form Submission",
     html: body,
   }
