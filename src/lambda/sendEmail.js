@@ -30,17 +30,30 @@ exports.handler = (event, context, callback) {
     text: `${message}`,
   }
 
-  mg.messages().send(mailOptions).then(success =>{
-    return {
-      statusCode: 200,
-      body: "Message sent",
-    }
-  }).catch(error =>{
-    return {
-      statusCode: 412,
-      body: error,
-    }
-  })
+  mg.messages().send(mailOptions, (error, body) => 
+  {
+       if (error)
+       {
+           return console.log(error);
+       }
+
+       callback(null, {
+           statusCode: 200,
+           body: "Mail sent"
+       });
+  });
+
+  // mg.messages().send(mailOptions).then(success =>{
+  //   return {
+  //     statusCode: 200,
+  //     body: "Message sent",
+  //   }
+  // }).catch(error =>{
+  //   return {
+  //     statusCode: 412,
+  //     body: error,
+  //   }
+  // })
 
   // Our Mailgun code
   // mg.messages().send(mailOptions, (error, body) => {
