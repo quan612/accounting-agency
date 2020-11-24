@@ -19,7 +19,7 @@ const mg = mailgun({
 })
 
 const successCode = 200
-const errorCode = 400
+const errorCode = 412
 
 export function handler(event, context, callback) {
   let data = JSON.parse(event.body)
@@ -27,12 +27,12 @@ export function handler(event, context, callback) {
   let { name, email, message } = data
 
   let mailOptions = {
-    from: `${name} >`,
+    from: `${name}`,
     to: "neverlate612@gmail.com",
     replyTo: email,
     text: `${message}`,
   }
-  console.log(123)
+
   // Our Mailgun code
   mg.messages().send(mailOptions, function (error, body) {
     if (error) {
