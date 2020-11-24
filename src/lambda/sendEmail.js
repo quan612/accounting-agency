@@ -1,6 +1,7 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
+const mailgun = require("mailgun-js")
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -12,7 +13,6 @@ const domain = process.env.MAILGUN_DOMAIN
 
 console.log(apiKey)
 
-const mailgun = require("mailgun-js")
 const mg = mailgun({
   apiKey,
   domain,
@@ -29,24 +29,28 @@ export function handler(event, context, callback) {
   let mailOptions = {
     from: `${name}`,
     to: "neverlate612@gmail.com",
-    replyTo: email,
+    // replyTo: email,
     text: `${message}`,
   }
 
   // Our Mailgun code
-  mg.messages().send(mailOptions, function (error, body) {
+  mg.messages().send(mailOptions, (error, body) => {
     if (error) {
-      callback(null, {
-        errorCode,
-        headers,
-        body: JSON.stringify(error),
-      })
-    } else {
-      callback(null, {
-        successCode,
-        headers,
-        body: JSON.stringify(body),
-      })
+      return console.log(error)
+      // callback(null, {
+      //   errorCode,
+      //   headers,
+      //   body: JSON.stringify(error),
+      // })
     }
+
+    // else {
+    callback(null, {
+      statusCode: 200,
+      body: "Mail sent",
+      // headers,
+      // body: JSON.stringify(body),
+    })
+    // }
   })
 }
