@@ -1,6 +1,4 @@
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+require("dotenv").config()
 
 console.log(process.env.MAILGUN_API_KEY)
 
@@ -9,7 +7,7 @@ export function handler(event, context, callback) {
     statusCode: 200,
     // That's the status code which will be returned when the function is executed to indicates that everything is OK
     body: JSON.stringify({
-      msg: "Hello, World! ",
+      msg: "Hello, Test ",
     }),
   })
 }
