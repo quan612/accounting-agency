@@ -31,7 +31,7 @@ export function handler(event, context, callback) {
   let mailOptions = {
     from: `${name}`,
     to: "neverlate612@gmail.com",
-    // replyTo: email,
+    subject: "Hello",
     text: `${message}`,
   }
 
