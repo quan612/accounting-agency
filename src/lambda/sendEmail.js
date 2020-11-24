@@ -24,7 +24,7 @@ exports.handler = (event, context, callback) {
   let { name, email, message } = data
 
   let mailOptions = {
-    from: `${name}`,
+    from: `quan612@yahoo.com`,
     to: "neverlate612@gmail.com",
     subject: "Hello",
     text: `${message}`,
