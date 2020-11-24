@@ -18,19 +18,19 @@ const mg = mailgun({
 const successCode = 200
 const errorCode = 412
 
-exports.handler = (event, context, callback) {
+exports.handler = function (event, context, callback) {
   let data = JSON.parse(event.body)
 
   let { name, email, message } = data
 
   let mailOptions = {
-    from: `quan612@yahoo.com`,
-    to: "neverlate612@gmail.com",
+    from: "Excited User <me@samples.mailgun.org>",
+    to: "neverlate612@gmail.com, quan612@yahoo.com",
     subject: "Hello",
     text: `${message}`,
   }
 
-  // mg.messages().send(mailOptions, (error, body) => 
+  // mg.messages().send(mailOptions, (error, body) =>
   // {
   //      if (error)
   //      {
@@ -56,7 +56,7 @@ exports.handler = (event, context, callback) {
   // })
 
   // Our Mailgun code
-  mg.messages().send(mailOptions, function(error, body) {
+  mg.messages().send(mailOptions, function (error, body) {
     if (error) {
       callback(null, {
         errorCode,
