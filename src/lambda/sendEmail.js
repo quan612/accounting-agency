@@ -1,6 +1,6 @@
-// require("dotenv").config({
-//   path: `.env.${process.env.NODE_ENV}`,
-// })
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 // require("dotenv").config()
 const mailgun = require("mailgun-js")
@@ -13,11 +13,11 @@ const headers = {
 // const apiKey = process.env.MAILGUN_API_KEY
 // const domain = process.env.MAILGUN_DOMAIN
 
-console.log(apiKey)
+// console.log(apiKey)
 
 const mg = mailgun({
-  apiKey: process.env.MAILGUN_API_KEY,
-  domain: process.env.MAILGUN_DOMAIN,
+  apiKey: process.env.GATSBY_MAILGUN_API_KEY,
+  domain: process.env.GATSBY_MAILGUN_DOMAIN,
 })
 
 const successCode = 200
