@@ -30,18 +30,18 @@ exports.handler = (event, context, callback) {
     text: `${message}`,
   }
 
-  mg.messages().send(mailOptions, (error, body) => 
-  {
-       if (error)
-       {
-           return console.log(error);
-       }
+  // mg.messages().send(mailOptions, (error, body) => 
+  // {
+  //      if (error)
+  //      {
+  //          return console.log(error);
+  //      }
 
-       callback(null, {
-           statusCode: 200,
-           body: "Mail sent"
-       });
-  });
+  //      callback(null, {
+  //          statusCode: 200,
+  //          body: "Mail sent"
+  //      });
+  // });
 
   // mg.messages().send(mailOptions).then(success =>{
   //   return {
@@ -56,25 +56,19 @@ exports.handler = (event, context, callback) {
   // })
 
   // Our Mailgun code
-  // mg.messages().send(mailOptions, (error, body) => {
-  //   console.log(body)
-  //   if (error) {
-  //     // return console.log(error)
-  //     callback(null, {
-  //       statusCode: 412,
-  //       headers,
-  //       // body: { message: "test" + JSON.stringify(error) },
-  //       body: JSON.stringify(error),
-  //     })
-  //   }
-
-  //   // else {
-  //   callback(null, {
-  //     statusCode: 200,
-  //     // body: { message: "test" },
-  //     headers,
-  //     body: JSON.stringify(body),
-  //   })
-  //   // }
-  // })
+  mg.messages().send(mailOptions, function(error, body) {
+    if (error) {
+      callback(null, {
+        errorCode,
+        headers,
+        body: JSON.stringify(error),
+      })
+    } else {
+      callback(null, {
+        successCode,
+        headers,
+        body: JSON.stringify(body),
+      })
+    }
+  })
 }
