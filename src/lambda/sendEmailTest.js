@@ -5,7 +5,7 @@ sgMail.setApiKey(SENDGRID_API_KEY)
 
 exports.handler = async (event, context, callback) => {
   const payload = JSON.parse(event.body)
-  const { email, subject } = payload
+  const { email } = payload
 
   const body = Object.keys(payload)
     .map(k => {
@@ -16,7 +16,7 @@ exports.handler = async (event, context, callback) => {
   const msg = {
     to: "quan612@yahoo.com",
     from: email,
-    subject: subject ? subject : "Contact Form Submission",
+    subject: "Contact Form Submission",
     html: body,
   }
 

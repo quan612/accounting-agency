@@ -37,6 +37,7 @@ export function handler(event, context, callback) {
 
   // Our Mailgun code
   mg.messages().send(mailOptions, (error, body) => {
+    console.log(body)
     if (error) {
       // return console.log(error)
       callback(null, {
